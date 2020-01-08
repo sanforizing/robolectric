@@ -140,7 +140,7 @@ public abstract class ClassInstrumentor {
 
   private void addNoArgsConstructor(MutableClass mutableClass) {
     if (!mutableClass.foundMethods.contains("<init>()V")) {
-      MethodNode defaultConstructor = new MethodNode(Opcodes.ACC_PUBLIC, "<init>", "()V", "()V", null);
+      MethodNode defaultConstructor = new MethodNode(Opcodes.ACC_PUBLIC | Opcodes.ACC_SYNTHETIC, "<init>", "()V", "()V", null);
       RobolectricGeneratorAdapter generator = new RobolectricGeneratorAdapter(defaultConstructor);
       generator.loadThis();
       generator.visitMethodInsn(Opcodes.INVOKESPECIAL, mutableClass.classNode.superName, "<init>", "()V", false);
