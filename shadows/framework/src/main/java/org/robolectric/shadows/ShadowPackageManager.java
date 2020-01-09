@@ -153,6 +153,7 @@ public class ShadowPackageManager {
   static boolean canRequestPackageInstalls = false;
   static boolean safeMode = false;
   boolean shouldShowActivityChooser = false;
+  static boolean throwOnInstallerPackageNotPresent = false;
   static final Map<String, Integer> distractingPackageRestrictions = new ConcurrentHashMap<>();
 
   /**
@@ -1010,6 +1011,15 @@ public class ShadowPackageManager {
    */
   public void setCanRequestPackageInstalls(boolean canRequestPackageInstalls) {
     ShadowPackageManager.canRequestPackageInstalls = canRequestPackageInstalls;
+  }
+
+  /**
+   * Sets if the {@link PackageManager} should throw in case the requested installer package is not
+   * present. Default behavior is to return null, which is different from actual PackageManager
+   * behavior.
+   */
+  public void setThrowOnInstallerPackageNotPresent(boolean throwOnInstallerPackageNotPresent) {
+    ShadowPackageManager.throwOnInstallerPackageNotPresent = throwOnInstallerPackageNotPresent;
   }
 
   @Implementation(minSdk = N)
